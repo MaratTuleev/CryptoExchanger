@@ -1,0 +1,199 @@
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='CryptoServer'*/[0m
+  [1m[35m (18.4ms)[0m  [1m[35mCREATE DATABASE "crypto_exchanger_development" ENCODING = 'unicode' /*application='CryptoServer'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='CryptoServer'*/[0m
+  [1m[35m (11.3ms)[0m  [1m[35mCREATE DATABASE "crypto_exchanger_test" ENCODING = 'unicode' /*application='CryptoServer'*/[0m
+Started GET "/" for 127.0.0.1 at 2025-04-02 16:16:53 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='CryptoServer'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/a1234/.rbenv/versions/3.2.7/lib/ruby/gems/3.2.0/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/a1234/.rbenv/versions/3.2.7/lib/ruby/gems/3.2.0/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.6ms | GC: 0.0ms)
+Completed 200 OK in 11ms (Views: 3.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6747435975801585120) /*application='CryptoServer'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='CryptoServer'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (4.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='CryptoServer'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-04-02 13:43:23.506937', '2025-04-02 13:43:23.506938') RETURNING "key" /*application='CryptoServer'*/[0m
+Migrating to CreateTransactions (20250402132650)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='CryptoServer'*/[0m
+  [1m[35m (13.1ms)[0m  [1m[35mCREATE TABLE "transactions" ("id" bigserial primary key, "date_time" timestamp NOT NULL, "email" character varying NOT NULL, "from_currency" decimal(15,10) NOT NULL, "to_currency" decimal(15,10) NOT NULL, "exchange_rate" decimal(15,10) NOT NULL, "exchange_fee" decimal(15,10) NOT NULL, "status" character varying NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='CryptoServer'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250402132650') RETURNING "version" /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*application='CryptoServer'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(6747435975801585120) /*application='CryptoServer'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='CryptoServer'*/[0m
+  [1m[36mTransaction Load (1.4ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" ORDER BY "transactions"."id" DESC LIMIT 1 /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='CryptoServer'*/[0m
+  [1m[36mTransaction Create (2.8ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-04-02 13:45:26.489114', '2025-04-02 13:45:26.489114') RETURNING "id" /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='CryptoServer'*/[0m
+  [1m[36mTransaction Create (2.0ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-04-02 13:52:21.350042', '2025-04-02 13:52:21.350042') RETURNING "id" /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='CryptoServer'*/[0m
+  [1m[36mTransaction Create (1.4ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-04-02 13:53:10.845756', '2025-04-02 13:53:10.845756') RETURNING "id" /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='CryptoServer'*/[0m
+  [1m[36mTransaction Create (3.3ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-04-02 13:54:43.105607', '2025-04-02 13:54:43.105607') RETURNING "id" /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='CryptoServer'*/[0m
+  [1m[36mTransaction Create (1.4ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-04-02 13:55:16.033713', '2025-04-02 13:55:16.033713') RETURNING "id" /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK /*application='CryptoServer'*/[0m
+Started GET "/" for 127.0.0.1 at 2025-04-02 17:20:55 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='CryptoServer'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/a1234/.rbenv/versions/3.2.7/lib/ruby/gems/3.2.0/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/a1234/.rbenv/versions/3.2.7/lib/ruby/gems/3.2.0/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.4ms | GC: 0.0ms)
+Completed 200 OK in 33ms (Views: 12.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 20.7ms)
+
+
+Started GET "/api/transactions" for ::1 at 2025-04-02 17:26:21 +0300
+Processing by Api::TransactionsController#index as */*
+  [1m[36mTransaction Load (15.7ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /*action='index',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `index'
+Completed 200 OK in 25ms (Views: -5.3ms | ActiveRecord: 21.9ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/api/transactions" for ::1 at 2025-04-02 17:26:50 +0300
+Processing by Api::TransactionsController#index as */*
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /*action='index',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/transactions" for ::1 at 2025-04-02 17:26:50 +0300
+Processing by Api::TransactionsController#index as */*
+  [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /*action='index',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/transactions" for ::1 at 2025-04-02 17:27:11 +0300
+Processing by Api::TransactionsController#index as */*
+  [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /*action='index',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/transactions" for ::1 at 2025-04-02 17:27:11 +0300
+Processing by Api::TransactionsController#index as */*
+  [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /*action='index',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/transactions" for ::1 at 2025-04-02 17:27:11 +0300
+Processing by Api::TransactionsController#index as */*
+  [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /*action='index',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='CryptoServer'*/[0m
+  [1m[36mTransaction Create (2.5ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-02 14:31:50.137322', 'carlton.ankunding@gusikowski-funk.example', 4.6248, 1.5441, 2149.4235, 0.0122, 'Fail', '2025-04-02 14:31:50.186180', '2025-04-02 14:31:50.186180') RETURNING "id" /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='CryptoServer'*/[0m
+  [1m[36mTransaction Create (0.6ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-02 14:31:50.192426', 'nigel@stokes-jacobson.test', 7.2515, 1.423, 4389.0547, 0.0351, 'Success', '2025-04-02 14:31:50.192742', '2025-04-02 14:31:50.192742') RETURNING "id" /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='CryptoServer'*/[0m
+  [1m[36mTransaction Create (0.5ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-02 14:31:50.193951', 'connie_macejkovic@kihn.test', 1.969, 6.0141, 1185.5398, 0.0712, 'Success', '2025-04-02 14:31:50.194205', '2025-04-02 14:31:50.194205') RETURNING "id" /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='CryptoServer'*/[0m
+  [1m[36mTransaction Create (0.4ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-02 14:31:50.195268', 'adan_hartmann@moen.test', 4.3225, 2.2469, 3953.8393, 0.0838, 'Success', '2025-04-02 14:31:50.195508', '2025-04-02 14:31:50.195508') RETURNING "id" /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='CryptoServer'*/[0m
+  [1m[36mTransaction Create (0.3ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-02 14:31:50.196518', 'marline@crona-ruecker.example', 4.407, 7.5198, 3024.6317, 0.0756, 'Success', '2025-04-02 14:31:50.196750', '2025-04-02 14:31:50.196750') RETURNING "id" /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='CryptoServer'*/[0m
+  [1m[36mTransaction Create (0.3ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-02 14:31:50.197588', 'carter@mraz.test', 4.2918, 5.4307, 2849.4805, 0.0818, 'Fail', '2025-04-02 14:31:50.197864', '2025-04-02 14:31:50.197864') RETURNING "id" /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='CryptoServer'*/[0m
+  [1m[36mTransaction Create (0.3ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-02 14:31:50.198972', 'aaron_hettinger@koepp.test', 2.0842, 5.2058, 640.5879, 0.0885, 'Fail', '2025-04-02 14:31:50.199216', '2025-04-02 14:31:50.199216') RETURNING "id" /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='CryptoServer'*/[0m
+  [1m[36mTransaction Create (0.3ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-02 14:31:50.199937', 'malcolm.trantow@emmerich.example', 1.0642, 8.7322, 3240.121, 0.0227, 'Success', '2025-04-02 14:31:50.200151', '2025-04-02 14:31:50.200151') RETURNING "id" /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='CryptoServer'*/[0m
+  [1m[36mTransaction Create (0.3ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-02 14:31:50.200956', 'edmund@kling-feest.test', 6.2654, 0.8513, 3523.5708, 0.0255, 'Success', '2025-04-02 14:31:50.201161', '2025-04-02 14:31:50.201161') RETURNING "id" /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='CryptoServer'*/[0m
+  [1m[36mTransaction Create (0.3ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-02 14:31:50.201951', 'laurence_beier@legros.test', 8.5956, 8.3708, 4540.9373, 0.019, 'Fail', '2025-04-02 14:31:50.202157', '2025-04-02 14:31:50.202157') RETURNING "id" /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='CryptoServer'*/[0m
+  [1m[36mTransaction Load (1.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /* loading for pp */ LIMIT 11 /*application='CryptoServer'*/[0m
+  [1m[36mTransaction Load (27.9ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /* loading for pp */ LIMIT 11 /*application='CryptoServer'*/[0m
+Started GET "/api/transactions" for ::1 at 2025-04-02 17:33:25 +0300
+Processing by Api::TransactionsController#index as */*
+  [1m[36mTransaction Load (10.7ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /*action='index',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `index'
+Completed 200 OK in 28ms (Views: 7.0ms | ActiveRecord: 20.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/transactions" for ::1 at 2025-04-02 17:33:25 +0300
+Processing by Api::TransactionsController#index as */*
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /*action='index',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/transactions" for ::1 at 2025-04-02 17:33:25 +0300
+Processing by Api::TransactionsController#index as */*
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /*action='index',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.8ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/transactions" for ::1 at 2025-04-02 17:33:27 +0300
+Processing by Api::TransactionsController#index as */*
+  [1m[36mTransaction Load (1.0ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /*action='index',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/transactions" for ::1 at 2025-04-02 17:33:27 +0300
+Processing by Api::TransactionsController#index as */*
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /*action='index',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/transactions" for ::1 at 2025-04-02 17:33:27 +0300
+Processing by Api::TransactionsController#index as */*
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /*action='index',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/transactions" for ::1 at 2025-04-02 17:33:54 +0300
+Processing by Api::TransactionsController#index as */*
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /*action='index',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/transactions" for ::1 at 2025-04-02 17:33:54 +0300
+Processing by Api::TransactionsController#index as */*
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /*action='index',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/transactions" for ::1 at 2025-04-02 17:33:54 +0300
+Processing by Api::TransactionsController#index as */*
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /*action='index',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.8ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/transactions" for ::1 at 2025-04-02 17:35:34 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='CryptoServer'*/[0m
+Processing by Api::TransactionsController#index as */*
+  [1m[36mTransaction Load (10.0ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /*action='index',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `index'
+Completed 200 OK in 36ms (Views: 1.5ms | ActiveRecord: 21.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/transactions" for ::1 at 2025-04-02 17:35:34 +0300
+Processing by Api::TransactionsController#index as */*
+  [1m[36mTransaction Load (0.6ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /*action='index',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+

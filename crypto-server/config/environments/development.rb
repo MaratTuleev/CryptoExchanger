@@ -6,11 +6,10 @@ Rails.application.configure do
   # Make code changes take effect immediately without server restart.
   config.enable_reloading = true
 
+  config.consider_all_requests_local = false
+
   # Do not eager load code on boot.
   config.eager_load = false
-
-  # Show full error reports.
-  config.consider_all_requests_local = true
 
   # Enable server timing.
   config.server_timing = true
