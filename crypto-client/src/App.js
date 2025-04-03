@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import ExchangeForm from "./ExchangeForm/Form";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [transactions, setTransactions] = useState([]);
@@ -10,16 +12,9 @@ function App() {
   }, []);
 
   return (
-      <div className="App">
-        <h1>Transactions</h1>
-        <ul>
-          {transactions.map(transaction => (
-              <li key={transaction.id}>
-                {transaction.from_currency} to {transaction.to_currency} - {transaction.exchange_rate}
-              </li>
-          ))}
-        </ul>
-      </div>
+      <>
+        <ExchangeForm/>
+      </>
   );
 }
 
