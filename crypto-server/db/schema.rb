@@ -17,6 +17,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_02_132650) do
   create_table "transactions", force: :cascade do |t|
     t.datetime "date_time", precision: nil, null: false
     t.string "email", null: false
+    t.string "recipient_address", null: false
     t.decimal "from_currency", precision: 15, scale: 10, null: false
     t.decimal "to_currency", precision: 15, scale: 10, null: false
     t.decimal "exchange_rate", precision: 15, scale: 10, null: false

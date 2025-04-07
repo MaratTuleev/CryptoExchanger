@@ -6,6 +6,7 @@ class Api::TransactionsController < ApplicationController
 
   def create
     @transaction = Transaction.new(transaction_params)
+    @transaction.status = 'Success'
     if @transaction.save
       render json: @transaction, status: :created
     else
@@ -16,6 +17,6 @@ class Api::TransactionsController < ApplicationController
   private
 
   def transaction_params
-    params.require(:transaction).permit(:date_time, :email, :from_currency, :to_currency, :exchange_rate, :exchange_fee, :status)
+    params.require(:transaction).permit(:date_time, :email, :recipient_address, :from_currency, :to_currency, :exchange_rate, :exchange_fee, :status)
   end
 end

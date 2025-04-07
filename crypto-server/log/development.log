@@ -617,3 +617,459 @@ Processing by Api::TransactionsController#index as */*
 Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/api/transactions" for ::1 at 2025-04-06 16:05:08 +0300
+Processing by Api::TransactionsController#index as */*
+  [1m[36mTransaction Load (111.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /*action='index',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `index'
+Completed 200 OK in 122ms (Views: 0.1ms | ActiveRecord: 122.0ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/api/transactions" for ::1 at 2025-04-06 16:05:08 +0300
+Processing by Api::TransactionsController#index as */*
+  [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" /*action='index',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 16:35:24 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"1234", "to_currency"=>0.01493810679, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000448143204", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"1234", "to_currency"=>0.01493810679, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000448143204"}}
+Completed 422 Unprocessable Content in 613ms (Views: 610.4ms | ActiveRecord: 10.2ms (0 queries, 0 cached) | GC: 99.2ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 16:35:34 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"20", "to_currency"=>0.00024210870000000002, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000007263261", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"20", "to_currency"=>0.00024210870000000002, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000007263261"}}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:9:in `create'
+  [1m[36mTransaction Create (6.8ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES (NULL, 'maratozavar@gmail.com', 20.0, 0.0002421087, 0.0000121054, 0.0000072633, NULL, '2025-04-06 13:35:34.428168', '2025-04-06 13:35:34.428168') RETURNING "id" /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[31mROLLBACK /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:9:in `create'
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 7.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::NotNullViolation (PG::NotNullViolation: ERROR:  null value in column "date_time" of relation "transactions" violates not-null constraint
+DETAIL:  Failing row contains (18, null, maratozavar@gmail.com, 20.0000000000, 0.0002421087, 0.0000121054, 0.0000072633, null, 2025-04-06 13:35:34.428168, 2025-04-06 13:35:34.428168).
+)
+Caused by: PG::NotNullViolation (ERROR:  null value in column "date_time" of relation "transactions" violates not-null constraint
+DETAIL:  Failing row contains (18, null, maratozavar@gmail.com, 20.0000000000, 0.0002421087, 0.0000121054, 0.0000072633, null, 2025-04-06 13:35:34.428168, 2025-04-06 13:35:34.428168).
+)
+
+Information for: ActiveRecord::NotNullViolation (PG::NotNullViolation: ERROR:  null value in column "date_time" of relation "transactions" violates not-null constraint
+DETAIL:  Failing row contains (18, null, maratozavar@gmail.com, 20.0000000000, 0.0002421087, 0.0000121054, 0.0000072633, null, 2025-04-06 13:35:34.428168, 2025-04-06 13:35:34.428168).
+):
+  
+
+Information for cause: PG::NotNullViolation (ERROR:  null value in column "date_time" of relation "transactions" violates not-null constraint
+DETAIL:  Failing row contains (18, null, maratozavar@gmail.com, 20.0000000000, 0.0002421087, 0.0000121054, 0.0000072633, null, 2025-04-06 13:35:34.428168, 2025-04-06 13:35:34.428168).
+):
+  
+app/controllers/api/transactions_controller.rb:9:in `create'
+Started POST "/api/transactions" for ::1 at 2025-04-06 16:39:13 +0300
+  
+NoMethodError (undefined method `before_create' for Api::TransactionsController:Class):
+  
+app/controllers/api/transactions_controller.rb:2:in `<class:TransactionsController>'
+app/controllers/api/transactions_controller.rb:1:in `<top (required)>'
+Started POST "/api/transactions" for ::1 at 2025-04-06 16:40:10 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"20", "to_currency"=>0.00024210870000000002, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000007263261", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"20", "to_currency"=>0.00024210870000000002, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000007263261"}}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:9:in `create'
+  [1m[36mTransaction Create (2.0ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-06 13:40:10.747969', 'maratozavar@gmail.com', 20.0, 0.0002421087, 0.0000121054, 0.0000072633, NULL, '2025-04-06 13:40:10.747862', '2025-04-06 13:40:10.747862') RETURNING "id" /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:9:in `create'
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 19.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::NotNullViolation (PG::NotNullViolation: ERROR:  null value in column "status" of relation "transactions" violates not-null constraint
+DETAIL:  Failing row contains (19, 2025-04-06 13:40:10.747969, maratozavar@gmail.com, 20.0000000000, 0.0002421087, 0.0000121054, 0.0000072633, null, 2025-04-06 13:40:10.747862, 2025-04-06 13:40:10.747862).
+)
+Caused by: PG::NotNullViolation (ERROR:  null value in column "status" of relation "transactions" violates not-null constraint
+DETAIL:  Failing row contains (19, 2025-04-06 13:40:10.747969, maratozavar@gmail.com, 20.0000000000, 0.0002421087, 0.0000121054, 0.0000072633, null, 2025-04-06 13:40:10.747862, 2025-04-06 13:40:10.747862).
+)
+
+Information for: ActiveRecord::NotNullViolation (PG::NotNullViolation: ERROR:  null value in column "status" of relation "transactions" violates not-null constraint
+DETAIL:  Failing row contains (19, 2025-04-06 13:40:10.747969, maratozavar@gmail.com, 20.0000000000, 0.0002421087, 0.0000121054, 0.0000072633, null, 2025-04-06 13:40:10.747862, 2025-04-06 13:40:10.747862).
+):
+  
+
+Information for cause: PG::NotNullViolation (ERROR:  null value in column "status" of relation "transactions" violates not-null constraint
+DETAIL:  Failing row contains (19, 2025-04-06 13:40:10.747969, maratozavar@gmail.com, 20.0000000000, 0.0002421087, 0.0000121054, 0.0000072633, null, 2025-04-06 13:40:10.747862, 2025-04-06 13:40:10.747862).
+):
+  
+app/controllers/api/transactions_controller.rb:9:in `create'
+Started POST "/api/transactions" for ::1 at 2025-04-06 16:41:26 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"20", "to_currency"=>0.00024210870000000002, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000007263261", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"20", "to_currency"=>0.00024210870000000002, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000007263261"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTransaction Create (1.4ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-06 13:41:26.782879', 'maratozavar@gmail.com', 20.0, 0.0002421087, 0.0000121054, 0.0000072633, 'Success', '2025-04-06 13:41:26.782835', '2025-04-06 13:41:26.782835') RETURNING "id" /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+Completed 201 Created in 9ms (Views: 0.5ms | ActiveRecord: 6.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mTransaction Load (19.7ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" ORDER BY "transactions"."id" DESC LIMIT 1 /*application='CryptoServer'*/[0m
+Started POST "/api/transactions" for ::1 at 2025-04-06 16:46:55 +0300
+  
+NoMethodError (undefined method `*' for :from_currency:Symbol):
+  
+app/models/transaction.rb:7:in `<class:Transaction>'
+app/models/transaction.rb:1:in `<top (required)>'
+Started POST "/api/transactions" for ::1 at 2025-04-06 16:47:29 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='CryptoServer'*/[0m
+  
+NoMethodError (undefined method `*' for :from_currency:Symbol):
+  
+app/models/transaction.rb:7:in `<class:Transaction>'
+app/models/transaction.rb:1:in `<top (required)>'
+Started POST "/api/transactions" for ::1 at 2025-04-06 16:50:43 +0300
+  
+NoMethodError (undefined method `validatee' for Transaction:Class):
+  
+app/models/transaction.rb:7:in `<class:Transaction>'
+app/models/transaction.rb:1:in `<top (required)>'
+Started POST "/api/transactions" for ::1 at 2025-04-06 16:50:53 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"20", "to_currency"=>0.00024210870000000002, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000007263261", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"20", "to_currency"=>0.00024210870000000002, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000007263261"}}
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 32.0ms (0 queries, 0 cached) | GC: 4.7ms)
+
+
+  
+NoMethodError (undefined method `to_currenct' for #<Transaction id: nil, date_time: nil, email: "maratozavar@gmail.com", from_currency: 0.2e2, to_currency: 0.2421087e-3, exchange_rate: 0.121054e-4, exchange_fee: 0.72633e-5, status: "Success", created_at: nil, updated_at: nil>):
+  
+app/controllers/api/transactions_controller.rb:13:in `create'
+Started POST "/api/transactions" for ::1 at 2025-04-06 16:51:16 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"20", "to_currency"=>0.00024210870000000002, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000007263261", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"20", "to_currency"=>0.00024210870000000002, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000007263261"}}
+Completed 422 Unprocessable Content in 576ms (Views: 569.8ms | ActiveRecord: 6.7ms (0 queries, 0 cached) | GC: 71.4ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 16:53:35 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"20", "to_currency"=>0.00024210870000000002, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000007263261", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"20", "to_currency"=>0.00024210870000000002, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000007263261"}}
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTransaction Create (2.9ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-06 13:53:35.325530', 'maratozavar@gmail.com', 20.0, 0.0002421087, 0.0000121054, 0.0000072633, 'Success', '2025-04-06 13:53:35.325457', '2025-04-06 13:53:35.325457') RETURNING "id" /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+Completed 201 Created in 13ms (Views: 0.3ms | ActiveRecord: 11.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 16:53:58 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"30", "to_currency"=>0.00036316305, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000010894891", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"30", "to_currency"=>0.00036316305, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000010894891"}}
+Completed 422 Unprocessable Content in 6ms (Views: 0.4ms | ActiveRecord: 3.8ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 16:54:15 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"30", "to_currency"=>0.00036316305, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000010894891", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"30", "to_currency"=>0.00036316305, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000010894891"}}
+Completed 422 Unprocessable Content in 2ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 16:54:16 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"30", "to_currency"=>0.00036316305, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000010894891", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"30", "to_currency"=>0.00036316305, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000010894891"}}
+Completed 422 Unprocessable Content in 2ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 16:54:16 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"30", "to_currency"=>0.00036316305, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000010894891", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"30", "to_currency"=>0.00036316305, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000010894891"}}
+Completed 422 Unprocessable Content in 2ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 16:54:16 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"30", "to_currency"=>0.00036316305, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000010894891", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"30", "to_currency"=>0.00036316305, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000010894891"}}
+Completed 422 Unprocessable Content in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 16:54:47 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"30", "to_currency"=>0.00036316305, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000010894891", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"30", "to_currency"=>0.00036316305, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000010894891"}}
+Completed 422 Unprocessable Content in 4ms (Views: 0.3ms | ActiveRecord: 3.3ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 16:56:35 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"30", "to_currency"=>0.00036316305, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000010894891", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"30", "to_currency"=>0.00036316305, "exchange_rate"=>"0.000012105435", "exchange_fee"=>"0.000010894891"}}
+Completed 422 Unprocessable Content in 4ms (Views: 0.3ms | ActiveRecord: 3.2ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 17:18:28 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"-123123", "to_currency"=>-1.4475158699359998, "exchange_rate"=>"0.000012120223", "exchange_fee"=>"-0.044768346493", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"-123123", "to_currency"=>-1.4475158699359998, "exchange_rate"=>"0.000012120223", "exchange_fee"=>"-0.044768346493"}}
+Completed 422 Unprocessable Content in 3ms (Views: 0.5ms | ActiveRecord: 5.8ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 17:18:37 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"23123", "to_currency"=>0.271842238936, "exchange_rate"=>"0.000012120223", "exchange_fee"=>"0.008407677493", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"23123", "to_currency"=>0.271842238936, "exchange_rate"=>"0.000012120223", "exchange_fee"=>"0.008407677493"}}
+Completed 422 Unprocessable Content in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 17:18:56 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"30", "to_currency"=>0.000346698489, "exchange_rate"=>"0.000012120223", "exchange_fee"=>"0.000010908201", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"30", "to_currency"=>0.000346698489, "exchange_rate"=>"0.000012120223", "exchange_fee"=>"0.000010908201"}}
+Completed 422 Unprocessable Content in 2ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 17:21:00 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"29", "to_currency"=>0.000334941873, "exchange_rate"=>"0.000012120223", "exchange_fee"=>"0.000010544594", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"29", "to_currency"=>0.000334941873, "exchange_rate"=>"0.000012120223", "exchange_fee"=>"0.000010544594"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTransaction Create (1.5ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-06 14:21:00.588353', 'maratozavar@gmail.com', 29.0, 0.0003349419, 0.0000121202, 0.0000105446, 'Success', '2025-04-06 14:21:00.588280', '2025-04-06 14:21:00.588280') RETURNING "id" /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+Completed 201 Created in 4ms (Views: 0.2ms | ActiveRecord: 2.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 17:22:22 +0300
+  
+ArgumentError (Unknown validator: 'EmailValidator')
+Caused by: NameError (uninitialized constant Transaction::EmailValidator)
+
+Information for: ArgumentError (Unknown validator: 'EmailValidator'):
+  
+app/models/transaction.rb:8:in `<class:Transaction>'
+app/models/transaction.rb:1:in `<top (required)>'
+
+Information for cause: NameError (uninitialized constant Transaction::EmailValidator):
+  
+app/models/transaction.rb:8:in `<class:Transaction>'
+app/models/transaction.rb:1:in `<top (required)>'
+Started POST "/api/transactions" for ::1 at 2025-04-06 17:23:40 +0300
+  
+ArgumentError (Unknown validator: 'EmailValidator')
+Caused by: NameError (uninitialized constant Transaction::EmailValidator)
+
+Information for: ArgumentError (Unknown validator: 'EmailValidator'):
+  
+app/models/transaction.rb:8:in `<class:Transaction>'
+app/models/transaction.rb:1:in `<top (required)>'
+
+Information for cause: NameError (uninitialized constant Transaction::EmailValidator):
+  
+app/models/transaction.rb:8:in `<class:Transaction>'
+app/models/transaction.rb:1:in `<top (required)>'
+Started POST "/api/transactions" for ::1 at 2025-04-06 17:25:06 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='CryptoServer'*/[0m
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail", "from_currency"=>"25", "to_currency"=>0.00028835217400000003, "exchange_rate"=>"0.000012138234", "exchange_fee"=>"0.000009103676", "transaction"=>{"email"=>"maratozavar@gmail", "from_currency"=>"25", "to_currency"=>0.00028835217400000003, "exchange_rate"=>"0.000012138234", "exchange_fee"=>"0.000009103676"}}
+Completed 422 Unprocessable Content in 11ms (Views: 0.1ms | ActiveRecord: 25.5ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 17:25:46 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"325", "to_currency"=>0.0038205782680000005, "exchange_rate"=>"0.000012138234", "exchange_fee"=>"0.000118347782", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"325", "to_currency"=>0.0038205782680000005, "exchange_rate"=>"0.000012138234", "exchange_fee"=>"0.000118347782"}}
+Completed 422 Unprocessable Content in 579ms (Views: 574.4ms | ActiveRecord: 5.3ms (0 queries, 0 cached) | GC: 70.4ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 17:30:03 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"22", "to_currency"=>0.00025302048100000004, "exchange_rate"=>"0.000012137792", "exchange_fee"=>"0.000008010943", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"22", "to_currency"=>0.00025302048100000004, "exchange_rate"=>"0.000012137792", "exchange_fee"=>"0.000008010943"}}
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 4.2ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method `recipient_address' for #<Transaction id: nil, date_time: nil, email: "maratozavar@gmail.com", from_currency: 0.22e2, to_currency: 0.2530205e-3, exchange_rate: 0.121378e-4, exchange_fee: 0.80109e-5, status: "Success", created_at: nil, updated_at: nil>):
+  
+app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='CryptoServer'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='CryptoServer'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='CryptoServer'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6747435975801585120) /*application='CryptoServer'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='CryptoServer'*/[0m
+Migrating to CreateTransactions (20250402132650)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='CryptoServer'*/[0m
+  [1m[35m (7.8ms)[0m  [1m[35mDROP TABLE "transactions" /*application='CryptoServer'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.9ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20250402132650' /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (4.6ms)[0m  [1m[35mCOMMIT /*application='CryptoServer'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(6747435975801585120) /*application='CryptoServer'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='CryptoServer'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6747435975801585120) /*application='CryptoServer'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='CryptoServer'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='CryptoServer'*/[0m
+Migrating to CreateTransactions (20250402132650)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='CryptoServer'*/[0m
+  [1m[35m (12.5ms)[0m  [1m[35mCREATE TABLE "transactions" ("id" bigserial primary key, "date_time" timestamp NOT NULL, "email" character varying NOT NULL, "recipient_address" character varying NOT NULL, "from_currency" decimal(15,10) NOT NULL, "to_currency" decimal(15,10) NOT NULL, "exchange_rate" decimal(15,10) NOT NULL, "exchange_fee" decimal(15,10) NOT NULL, "status" character varying NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='CryptoServer'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250402132650') RETURNING "version" /*application='CryptoServer'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT /*application='CryptoServer'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(6747435975801585120) /*application='CryptoServer'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='CryptoServer'*/[0m
+  [1m[36mTransaction Load (1.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" ORDER BY "transactions"."id" DESC LIMIT 1 /*application='CryptoServer'*/[0m
+Started POST "/api/transactions" for ::1 at 2025-04-06 17:33:07 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='CryptoServer'*/[0m
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"22", "to_currency"=>0.00025283687200000003, "exchange_rate"=>"0.000012129188", "exchange_fee"=>"0.000008005264", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"22", "to_currency"=>0.00025283687200000003, "exchange_rate"=>"0.000012129188", "exchange_fee"=>"0.000008005264"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTransaction Create (2.1ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "recipient_address", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-06 14:33:07.923685', 'maratozavar@gmail.com', NULL, 22.0, 0.0002528369, 0.0000121292, 0.0000080053, 'Success', '2025-04-06 14:33:07.923590', '2025-04-06 14:33:07.923590') RETURNING "id" /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 8.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::NotNullViolation (PG::NotNullViolation: ERROR:  null value in column "recipient_address" of relation "transactions" violates not-null constraint
+DETAIL:  Failing row contains (1, 2025-04-06 14:33:07.923685, maratozavar@gmail.com, null, 22.0000000000, 0.0002528369, 0.0000121292, 0.0000080053, Success, 2025-04-06 14:33:07.92359, 2025-04-06 14:33:07.92359).
+)
+Caused by: PG::NotNullViolation (ERROR:  null value in column "recipient_address" of relation "transactions" violates not-null constraint
+DETAIL:  Failing row contains (1, 2025-04-06 14:33:07.923685, maratozavar@gmail.com, null, 22.0000000000, 0.0002528369, 0.0000121292, 0.0000080053, Success, 2025-04-06 14:33:07.92359, 2025-04-06 14:33:07.92359).
+)
+
+Information for: ActiveRecord::NotNullViolation (PG::NotNullViolation: ERROR:  null value in column "recipient_address" of relation "transactions" violates not-null constraint
+DETAIL:  Failing row contains (1, 2025-04-06 14:33:07.923685, maratozavar@gmail.com, null, 22.0000000000, 0.0002528369, 0.0000121292, 0.0000080053, Success, 2025-04-06 14:33:07.92359, 2025-04-06 14:33:07.92359).
+):
+  
+
+Information for cause: PG::NotNullViolation (ERROR:  null value in column "recipient_address" of relation "transactions" violates not-null constraint
+DETAIL:  Failing row contains (1, 2025-04-06 14:33:07.923685, maratozavar@gmail.com, null, 22.0000000000, 0.0002528369, 0.0000121292, 0.0000080053, Success, 2025-04-06 14:33:07.92359, 2025-04-06 14:33:07.92359).
+):
+  
+app/controllers/api/transactions_controller.rb:10:in `create'
+Started POST "/api/transactions" for ::1 at 2025-04-06 17:33:31 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"22", "to_currency"=>0.00025283687200000003, "exchange_rate"=>"0.000012129188", "exchange_fee"=>"0.000008005264", "transaction"=>{"email"=>"maratozavar@gmail.com", "from_currency"=>"22", "to_currency"=>0.00025283687200000003, "exchange_rate"=>"0.000012129188", "exchange_fee"=>"0.000008005264"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTransaction Create (1.9ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "recipient_address", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-06 14:33:31.725827', 'maratozavar@gmail.com', NULL, 22.0, 0.0002528369, 0.0000121292, 0.0000080053, 'Success', '2025-04-06 14:33:31.725769', '2025-04-06 14:33:31.725769') RETURNING "id" /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 9.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::NotNullViolation (PG::NotNullViolation: ERROR:  null value in column "recipient_address" of relation "transactions" violates not-null constraint
+DETAIL:  Failing row contains (2, 2025-04-06 14:33:31.725827, maratozavar@gmail.com, null, 22.0000000000, 0.0002528369, 0.0000121292, 0.0000080053, Success, 2025-04-06 14:33:31.725769, 2025-04-06 14:33:31.725769).
+)
+Caused by: PG::NotNullViolation (ERROR:  null value in column "recipient_address" of relation "transactions" violates not-null constraint
+DETAIL:  Failing row contains (2, 2025-04-06 14:33:31.725827, maratozavar@gmail.com, null, 22.0000000000, 0.0002528369, 0.0000121292, 0.0000080053, Success, 2025-04-06 14:33:31.725769, 2025-04-06 14:33:31.725769).
+)
+
+Information for: ActiveRecord::NotNullViolation (PG::NotNullViolation: ERROR:  null value in column "recipient_address" of relation "transactions" violates not-null constraint
+DETAIL:  Failing row contains (2, 2025-04-06 14:33:31.725827, maratozavar@gmail.com, null, 22.0000000000, 0.0002528369, 0.0000121292, 0.0000080053, Success, 2025-04-06 14:33:31.725769, 2025-04-06 14:33:31.725769).
+):
+  
+
+Information for cause: PG::NotNullViolation (ERROR:  null value in column "recipient_address" of relation "transactions" violates not-null constraint
+DETAIL:  Failing row contains (2, 2025-04-06 14:33:31.725827, maratozavar@gmail.com, null, 22.0000000000, 0.0002528369, 0.0000121292, 0.0000080053, Success, 2025-04-06 14:33:31.725769, 2025-04-06 14:33:31.725769).
+):
+  
+app/controllers/api/transactions_controller.rb:10:in `create'
+Started POST "/api/transactions" for ::1 at 2025-04-06 17:35:22 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"22", "to_currency"=>0.00025292929500000006, "exchange_rate"=>"0.000012133519", "exchange_fee"=>"0.000008008123", "recipient_address"=>"skdndkslk435kl", "transaction"=>{"email"=>"maratozavar@gmail.com", "recipient_address"=>"skdndkslk435kl", "from_currency"=>"22", "to_currency"=>0.00025292929500000006, "exchange_rate"=>"0.000012133519", "exchange_fee"=>"0.000008008123"}}
+Completed 422 Unprocessable Content in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 17:36:06 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"22", "to_currency"=>0.00025292929500000006, "exchange_rate"=>"0.000012133519", "exchange_fee"=>"0.000008008123", "recipient_address"=>"1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", "transaction"=>{"email"=>"maratozavar@gmail.com", "recipient_address"=>"1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", "from_currency"=>"22", "to_currency"=>0.00025292929500000006, "exchange_rate"=>"0.000012133519", "exchange_fee"=>"0.000008008123"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTransaction Create (1.7ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "recipient_address", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-06 14:36:06.877266', 'maratozavar@gmail.com', '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 22.0, 0.0002529293, 0.0000121335, 0.0000080081, 'Success', '2025-04-06 14:36:06.877246', '2025-04-06 14:36:06.877246') RETURNING "id" /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+Completed 201 Created in 4ms (Views: 0.2ms | ActiveRecord: 2.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 17:43:19 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"333", "to_currency"=>0.003911289886, "exchange_rate"=>"0.000012127457", "exchange_fee"=>"0.000121153295", "recipient_address"=>"skdndkslk435kl", "transaction"=>{"email"=>"maratozavar@gmail.com", "recipient_address"=>"skdndkslk435kl", "from_currency"=>"333", "to_currency"=>0.003911289886, "exchange_rate"=>"0.000012127457", "exchange_fee"=>"0.000121153295"}}
+Completed 422 Unprocessable Content in 3ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 17:48:47 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"333", "to_currency"=>0.003911289886, "exchange_rate"=>"0.000012127457", "exchange_fee"=>"0.000121153295", "recipient_address"=>"skdndkslk435kl", "transaction"=>{"email"=>"maratozavar@gmail.com", "recipient_address"=>"skdndkslk435kl", "from_currency"=>"333", "to_currency"=>0.003911289886, "exchange_rate"=>"0.000012127457", "exchange_fee"=>"0.000121153295"}}
+Completed 422 Unprocessable Content in 4ms (Views: 0.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 17:49:58 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"123123", "to_currency"=>1.444312599344, "exchange_rate"=>"0.000012093502", "exchange_fee"=>"0.044669647402", "recipient_address"=>"skdndkslk435kl", "transaction"=>{"email"=>"maratozavar@gmail.com", "recipient_address"=>"skdndkslk435kl", "from_currency"=>"123123", "to_currency"=>1.444312599344, "exchange_rate"=>"0.000012093502", "exchange_fee"=>"0.044669647402"}}
+Completed 422 Unprocessable Content in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-06 17:51:26 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"123213", "to_currency"=>1.445087139485, "exchange_rate"=>"0.000012091149", "exchange_fee"=>"0.044693602252", "recipient_address"=>"skdndkslk435kl", "transaction"=>{"email"=>"maratozavar@gmail.com", "recipient_address"=>"skdndkslk435kl", "from_currency"=>"123213", "to_currency"=>1.445087139485, "exchange_rate"=>"0.000012091149", "exchange_fee"=>"0.044693602252"}}
+Completed 422 Unprocessable Content in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mTransaction Load (24.4ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" ORDER BY "transactions"."id" DESC LIMIT 1 /*application='CryptoServer'*/[0m
+Started POST "/api/transactions" for ::1 at 2025-04-07 15:51:58 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"marat.tuleev@kuper.ru", "from_currency"=>"20", "to_currency"=>0.000244963638, "exchange_rate"=>"0.000012936270", "exchange_fee"=>"0.000007761762", "recipient_address"=>"1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", "transaction"=>{"email"=>"marat.tuleev@kuper.ru", "recipient_address"=>"1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", "from_currency"=>"20", "to_currency"=>0.000244963638, "exchange_rate"=>"0.000012936270", "exchange_fee"=>"0.000007761762"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTransaction Create (1.6ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "recipient_address", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-07 12:51:58.528460', 'marat.tuleev@kuper.ru', '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 20.0, 0.0002449636, 0.0000129363, 0.0000077618, 'Success', '2025-04-07 12:51:58.528343', '2025-04-07 12:51:58.528343') RETURNING "id" /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+Completed 201 Created in 22ms (Views: 0.4ms | ActiveRecord: 7.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-07 15:55:26 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"marat.tuleev@kuper.ru", "from_currency"=>"25", "to_currency"=>0.00030730990300000005, "exchange_rate"=>"0.000012919996", "exchange_fee"=>"0.000009689997", "recipient_address"=>"1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", "transaction"=>{"email"=>"marat.tuleev@kuper.ru", "recipient_address"=>"1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", "from_currency"=>"25", "to_currency"=>0.00030730990300000005, "exchange_rate"=>"0.000012919996", "exchange_fee"=>"0.000009689997"}}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTransaction Create (5.7ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "recipient_address", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-07 12:55:26.301838', 'marat.tuleev@kuper.ru', '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 25.0, 0.0003073099, 0.00001292, 0.00000969, 'Success', '2025-04-07 12:55:26.301762', '2025-04-07 12:55:26.301762') RETURNING "id" /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+Completed 201 Created in 12ms (Views: 0.4ms | ActiveRecord: 6.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-07 16:08:20 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"23", "to_currency"=>0.000283519302, "exchange_rate"=>"0.000012977109", "exchange_fee"=>"0.000008954205", "recipient_address"=>"1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", "transaction"=>{"email"=>"maratozavar@gmail.com", "recipient_address"=>"1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", "from_currency"=>"23", "to_currency"=>0.000283519302, "exchange_rate"=>"0.000012977109", "exchange_fee"=>"0.000008954205"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTransaction Create (1.6ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "recipient_address", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-07 13:08:20.549128', 'maratozavar@gmail.com', '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 23.0, 0.0002835193, 0.0000129771, 0.0000089542, 'Success', '2025-04-07 13:08:20.549046', '2025-04-07 13:08:20.549046') RETURNING "id" /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+Completed 201 Created in 24ms (Views: 0.4ms | ActiveRecord: 8.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-07 16:18:35 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"11", "to_currency"=>0.00013240990599999998, "exchange_rate"=>"0.000012971875", "exchange_fee"=>"0.000004280719", "recipient_address"=>"1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", "transaction"=>{"email"=>"maratozavar@gmail.com", "recipient_address"=>"1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", "from_currency"=>"11", "to_currency"=>0.00013240990599999998, "exchange_rate"=>"0.000012971875", "exchange_fee"=>"0.000004280719"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTransaction Create (1.6ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "recipient_address", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-07 13:18:35.756956', 'maratozavar@gmail.com', '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 11.0, 0.0001324099, 0.0000129719, 0.0000042807, 'Success', '2025-04-07 13:18:35.756448', '2025-04-07 13:18:35.756448') RETURNING "id" /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+Completed 201 Created in 23ms (Views: 0.4ms | ActiveRecord: 8.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-07 16:20:36 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"marat.tuleev@kuper.ru", "from_currency"=>"11", "to_currency"=>"0.000132501444", "exchange_rate"=>"0.000012980454", "exchange_fee"=>"0.000004283550", "recipient_address"=>"1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", "transaction"=>{"email"=>"marat.tuleev@kuper.ru", "recipient_address"=>"1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", "from_currency"=>"11", "to_currency"=>"0.000132501444", "exchange_rate"=>"0.000012980454", "exchange_fee"=>"0.000004283550"}}
+  [1m[36mTRANSACTION (5.8ms)[0m  [1m[35mBEGIN /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTransaction Create (9.4ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "recipient_address", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-07 13:20:36.555313', 'marat.tuleev@kuper.ru', '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 11.0, 0.0001325014, 0.0000129805, 0.0000042836, 'Success', '2025-04-07 13:20:36.555284', '2025-04-07 13:20:36.555284') RETURNING "id" /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+Completed 201 Created in 16ms (Views: 0.3ms | ActiveRecord: 16.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+

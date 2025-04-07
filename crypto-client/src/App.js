@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ExchangeForm from "./ExchangeForm/Form";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Success from "./SuccessPage/Success";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  const [transactions, setTransactions] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:3000/api/transactions')  // Обратите внимание на порт (порт Rails по умолчанию - 3001)
-        .then(response => response.json())
-        .then(data => setTransactions(data));
-  }, []);
-
   return (
       <>
-        <ExchangeForm/>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" exact element={<ExchangeForm/>} />
+            <Route path="/exchange" element={<ExchangeForm/>} />
+            <Route path="/success" element={<Success/>} />
+          </Routes>
+        </BrowserRouter>
       </>
   );
 }
