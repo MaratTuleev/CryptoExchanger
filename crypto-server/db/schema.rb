@@ -10,14 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_02_132650) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_08_135721) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "admin_users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "transactions", force: :cascade do |t|
     t.datetime "date_time", precision: nil, null: false
     t.string "email", null: false
     t.string "recipient_address", null: false
+    t.string "transaction_id"
     t.decimal "from_currency", precision: 15, scale: 10, null: false
     t.decimal "to_currency", precision: 15, scale: 10, null: false
     t.decimal "exchange_rate", precision: 15, scale: 10, null: false

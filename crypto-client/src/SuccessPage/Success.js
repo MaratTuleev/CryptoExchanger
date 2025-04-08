@@ -48,6 +48,10 @@ const Success = () => {
           <Header>Exchange rate</Header>
           <SubHeader>1 USDT ~ {exchangeRate} BTC</SubHeader>
         </InfoBlock>
+        <InfoBlock>
+          <Header>Transaction ID</Header>
+          <SubHeader>sadjsdvkljsdlkjweijf</SubHeader>
+        </InfoBlock>
       </InfoContainer>
     </SuccessContainer>
   )

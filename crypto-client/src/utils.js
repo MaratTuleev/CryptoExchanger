@@ -1,3 +1,7 @@
+export const encodeToBase64 = (str) => {
+  return btoa(String.fromCharCode(...new TextEncoder().encode(str)))
+}
+
 export const snakeCase = str => (
   str.replace(/([A-Z]+)/g, (_, x) => '_' + x.toLowerCase()).replace(/^_/, '')
 )

@@ -8,5 +8,11 @@ Rails.application.routes.draw do
   namespace :api do
     resources :transactions, only: [:index, :create]
   end
-
+  namespace :admin do
+    get 'login', to: 'auth#login'
+    resources :dashboards, only: [] do
+      get :total_info, on: :collection
+      get :transactions, on: :collection
+    end
+  end
 end

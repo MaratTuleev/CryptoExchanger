@@ -9,6 +9,8 @@ class Transaction < ApplicationRecord
   validates :recipient_address, sbtc_address: true
   validate :validate_btc_currency
 
+  scope :success, -> { where(status: "Success") }
+
   private
 
   def set_default_date_time
