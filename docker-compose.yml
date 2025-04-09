@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: a1234
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: crypto_exchanger_development
+    ports:
+      - "5432:5432"
+
+  api:
+    build:
+      context: ./crypto-server
+    volumes:
+      - ./crypto-server:/crypto-server
+    environment:
+      - RAILS_ENV=development
+      - DATABASE_URL=postgres://a1234:mysecretpassword@db:5432/crypto_exchanger_development
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    command: bash -c "bin/rails db:create db:migrate db:seed && bin/rails server -b '0.0.0.0'"
+
+  frontend:
+    build:
+      context: ./crypto-client
+    volumes:
+      - ./crypto-client:/crypto-client
+    ports:
+      - "3001:3001"
+    depends_on:
+      - api
+    environment:
+      - REACT_APP_API_URL=http://api:3000
+
+volumes:
+  postgres_data:

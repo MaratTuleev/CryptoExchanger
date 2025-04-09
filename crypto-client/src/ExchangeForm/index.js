@@ -26,6 +26,8 @@ const Index = () => {
     fetchRates()
   }, [])
 
+  if (!usdtToBitcoinRate) return null
+
   return (
     <Form exchangeRate={usdtToBitcoinRate}/>
   )

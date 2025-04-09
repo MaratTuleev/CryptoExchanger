@@ -2,21 +2,19 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { Header, InfoBlock, InfoContainer, PageHeader, SubHeader, SuccessContainer } from "./styles"
 import { Button } from "react-bootstrap"
 
-const Success = () => {
+const Index = () => {
   const NETWORK_FEE = 0.000006
   const location = useLocation()
   const navigate = useNavigate()
 
-  // Доступ к переданным данным
   const {
     fromCurrency,
     toCurrency,
     exchangeFee,
     recipientAddress,
     exchangeRate
-  } = location.state.stateData || {}
+  } = location.state || {}
 
-  console.log('fromCurrency', location.state)
   return (
     <SuccessContainer>
       <PageHeader>
@@ -57,4 +55,4 @@ const Success = () => {
   )
 }
 
-export default Success
+export default Index

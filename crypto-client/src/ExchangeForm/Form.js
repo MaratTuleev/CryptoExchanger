@@ -5,79 +5,86 @@ import { deepCamelCase, deepSnakeCase } from "../utils"
 import { useNavigate } from 'react-router-dom'
 import { EXCHANGE_FEE_PERCENT, NETWORK_FEE, RATE_ACCURACY } from '../constants'
 
-const FormGroup = ({exchangeRate}) => {
-  const [usdtValue, setUsdtValue] = useState()
-  const [bitcoinValue, setBitcoinValue] = useState()
-  const [exchangeFee, setExchangeFee] = useState(0)
-  const [recipientWalletAddress, setRecipientWalletAddress] = useState()
-  const [recipientEmailAddress, setRecipientEmailAddress] = useState()
-  const [rulesChecked, setRulesChecked] = useState(false)
+const FormGroup = ({ exchangeRate }) => {
+  const [formData, setFormData] = useState({
+    usdtValue: '',
+    bitcoinValue: '',
+    exchangeFee: 0,
+    recipientWalletAddress: '',
+    recipientEmailAddress: '',
+    rulesChecked: false
+  })
   const [errors, setErrors] = useState({})
   const navigate = useNavigate()
+
+  const calcExchangeFee = (value) => (value * EXCHANGE_FEE_PERCENT).toFixed(RATE_ACCURACY)
+
+  const handleChange = ({ target: { name, value, type, checked } }) => {
+    const val = type === 'checkbox' ? checked : value
+
+    setFormData((prev) => {
+      let updated = { ...prev, [name]: val }
+      if (['usdtValue', 'bitcoinValue'].includes(name) && Number(val) === 0) {
+        return { ...updated, usdtValue: '', bitcoinValue: '', exchangeFee: 0 }
+      }
+
+      if (name === 'usdtValue') {
+        const usdt = parseFloat(val)
+        const bitcoins = usdt * exchangeRate
+        const fee = calcExchangeFee(bitcoins)
+        updated.bitcoinValue = (bitcoins - NETWORK_FEE - fee).toFixed(RATE_ACCURACY)
+        updated.exchangeFee = fee
+      }
+      if (name === 'bitcoinValue') {
+        const btc = parseFloat(val)
+        const bitcoinsBeforeFee = btc / (1 - EXCHANGE_FEE_PERCENT)
+        const fee = bitcoinsBeforeFee - btc
+        updated.bitcoinValue = btc.toFixed(RATE_ACCURACY)
+        updated.usdtValue = (bitcoinsBeforeFee / exchangeRate).toFixed(RATE_ACCURACY)
+        updated.exchangeFee = fee
+      }
+
+      return updated
+    })
+  }
 
   const exchangeCurrency = async (event) => {
     event.preventDefault()
 
     const params = {
-      email: recipientEmailAddress,
-      fromCurrency: usdtValue,
-      toCurrency: bitcoinValue,
-      recipientAddress: recipientWalletAddress,
+      email: formData.recipientEmailAddress,
+      fromCurrency: formData.usdtValue,
+      toCurrency: formData.bitcoinValue,
+      recipientAddress: formData.recipientWalletAddress,
       exchangeRate,
-      exchangeFee
+      exchangeFee: formData.exchangeFee
     }
 
     fetch('http://localhost:3000/api/transactions', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(deepSnakeCase(params)),
     })
       .then(response => {
-          if (response.status === 422) {
-            return response.json().then(errors => {
-              setErrors(deepCamelCase(errors))
-              throw new Error('Validation failed')
-            })
-          } else return response.json()
-        }
-      )
-      .then(data => navigate('/success', {state: params}))
+        if (response.status === 422) {
+          return response.json().then(errors => {
+            setErrors(deepCamelCase(errors))
+            throw new Error('Validation failed')
+          })
+        } else return response.json()
+      })
+      .then(data => navigate('/success', { state: params }))
       .catch(error => console.warn(error.message))
   }
 
-  const calcExchangeFee = (value) => {
-    return (value * EXCHANGE_FEE_PERCENT).toFixed(RATE_ACCURACY)
-  }
-
-  const handleCurrencyChange = ({target: {name, value}}) => {
-    if (Number(value) === 0) {
-      setBitcoinValue('')
-      setUsdtValue('')
-      setExchangeFee(0)
-    } else if (name === "usdt") {
-      setUsdtValue(value)
-      const bitcoins = value * exchangeRate
-      const fee = calcExchangeFee(bitcoins)
-      setBitcoinValue((bitcoins - NETWORK_FEE - fee).toFixed(RATE_ACCURACY))
-      setExchangeFee(fee)
-    } else if (name === "bitcoin") {
-      const bitcoinsBeforeFee = value / (1 - EXCHANGE_FEE_PERCENT)
-      const fee = bitcoinsBeforeFee - value
-      setBitcoinValue(value.toFixed(RATE_ACCURACY))
-      setUsdtValue(bitcoinsBeforeFee / exchangeRate)
-      setExchangeFee(fee)
-    }
-  }
-
-  const handleWalletAddressChange = ({target: {value}}) => {
-    setRecipientWalletAddress(value)
-  }
-
-  const handleEmailAddressChange = ({target: {value}}) => {
-    setRecipientEmailAddress(value)
-  }
-
-  console.log('RENDER')
+  const {
+    usdtValue,
+    bitcoinValue,
+    recipientWalletAddress,
+    recipientEmailAddress,
+    exchangeFee,
+    rulesChecked
+  } = formData
 
   return (
     <FormContainer>
@@ -86,33 +93,34 @@ const FormGroup = ({exchangeRate}) => {
           <Form.Label>You send (USDT)</Form.Label>
           <Form.Control
             type="number"
-            name="usdt"
+            name="usdtValue"
             placeholder="Amount of USDT"
             value={usdtValue}
-            onChange={handleCurrencyChange}
+            onChange={handleChange}
           />
           <FormError>{errors['fromCurrency']}</FormError>
         </Form.Group>
-        <Form.Label>1 USDT ~ {exchangeRate} BTC</Form.Label><p/>
-        <Form.Label>Exchange fee <b>{exchangeFee} BTC</b></Form.Label><p/>
+        <Form.Label>1 USDT ~ {exchangeRate} BTC</Form.Label><p />
+        <Form.Label>Exchange fee <b>{exchangeFee} BTC</b></Form.Label><p />
         <Form.Label>Network fee {NETWORK_FEE} BTC</Form.Label>
         <Form.Group className="mb-3" controlId="formBitcoin">
           <Form.Label>You get (Bitcoin)</Form.Label>
           <Form.Control
             type="number"
-            name="bitcoin"
+            name="bitcoinValue"
             placeholder="Amount of Bitcoin"
             value={bitcoinValue}
-            onChange={handleCurrencyChange}
+            onChange={handleChange}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formWallet">
           <Form.Label>Wallet address</Form.Label>
           <Form.Control
             type="text"
+            name="recipientWalletAddress"
             placeholder="Enter your BTC recipient address"
             value={recipientWalletAddress}
-            onChange={handleWalletAddressChange}
+            onChange={handleChange}
           />
           <FormError>{errors['recipientAddress']}</FormError>
         </Form.Group>
@@ -120,9 +128,10 @@ const FormGroup = ({exchangeRate}) => {
           <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
+            name="recipientEmailAddress"
             placeholder="name@example.com"
             value={recipientEmailAddress}
-            onChange={handleEmailAddressChange}
+            onChange={handleChange}
           />
           <FormError>{errors['email']}</FormError>
         </Form.Group>
@@ -130,12 +139,17 @@ const FormGroup = ({exchangeRate}) => {
           <Form.Check
             id="agreeRulesCheck"
             type="checkbox"
+            name="rulesChecked"
             label="I agree with terms of use, Privacy Policy and AML/KYC"
-            value={rulesChecked}
-            onChange={(e) => setRulesChecked(e.target.checked)}
+            checked={rulesChecked}
+            onChange={handleChange}
           />
         </Form.Group>
-        <Button variant="primary" type="submit" disabled={!(rulesChecked && recipientWalletAddress?.length > 0)}>
+        <Button
+          variant="primary"
+          type="submit"
+          disabled={!(rulesChecked && recipientWalletAddress?.length > 0)}
+        >
           Exchange now
         </Button>
       </Form>
