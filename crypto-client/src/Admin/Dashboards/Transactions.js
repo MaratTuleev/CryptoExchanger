@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import moment from "moment-timezone";
+import { useEffect, useState } from "react"
+import moment from "moment-timezone"
 import { Table, Badge, Container } from 'react-bootstrap'
-import { deepCamelCase } from "../../utils";
-import TablePagination from "../../Components/TablePagination";
+import { deepCamelCase } from "../../utils"
+import TablePagination from "../../Components/TablePagination"
+import { DashboardHeader } from "./styles"
 
 const Transactions = () => {
   const [transactions, setTransactions] = useState([])
@@ -30,8 +31,8 @@ const Transactions = () => {
 
   return (
     <Container className='mt-4'>
-      <h3 className='mb-4'>Transactions</h3>
-      <Table striped bordered hover>
+      <DashboardHeader>Transactions</DashboardHeader>
+      <Table striped bordered hover responsive>
         <thead>
         <tr>
           <th>id</th>

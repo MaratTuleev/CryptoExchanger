@@ -1,7 +1,10 @@
-import { Pagination } from "react-bootstrap";
-import { useState } from "react";
+import { Pagination } from "react-bootstrap"
+import { useState } from "react"
 
-const TablePagination = ({itemsLength, itemsPerPage = 10, onPageChange = () => {}}) => {
+const TablePagination = ({
+                           itemsLength, itemsPerPage = 10, onPageChange = () => {
+  }
+                         }) => {
   const [currentPage, setCurrentPage] = useState(1)
 
   const totalPages = Math.ceil(itemsLength / itemsPerPage)
@@ -13,8 +16,8 @@ const TablePagination = ({itemsLength, itemsPerPage = 10, onPageChange = () => {
 
   return (
     <Pagination className='mt-3'>
-      <Pagination.First onClick={() => handlePageChange(1)} disabled={currentPage === 1} />
-      <Pagination.Prev onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} />
+      <Pagination.First onClick={() => handlePageChange(1)} disabled={currentPage === 1}/>
+      <Pagination.Prev onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}/>
 
       {[...Array(totalPages)].map((_, i) => (
         <Pagination.Item
@@ -26,8 +29,8 @@ const TablePagination = ({itemsLength, itemsPerPage = 10, onPageChange = () => {
         </Pagination.Item>
       ))}
 
-      <Pagination.Next onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} />
-      <Pagination.Last onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages} />
+      <Pagination.Next onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}/>
+      <Pagination.Last onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages}/>
     </Pagination>
   )
 }

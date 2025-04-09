@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom'
-import { Header, InfoBlock, InfoContainer, PageHeader, SubHeader, SuccessContainer } from "./styles";
-import { Button } from "react-bootstrap";
+import { Header, InfoBlock, InfoContainer, PageHeader, SubHeader, SuccessContainer } from "./styles"
+import { Button } from "react-bootstrap"
 
 const Success = () => {
   const NETWORK_FEE = 0.000006

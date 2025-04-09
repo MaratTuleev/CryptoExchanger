@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
-import { FormError } from "../ExchangeForm/styles";
-import { encodeToBase64 } from "../utils";
-import { LoginContainer } from "./styles";
+import { Button, Form } from "react-bootstrap"
+import { useNavigate } from "react-router-dom"
+import Cookies from "js-cookie"
+import { FormError } from "../ExchangeForm/styles"
+import { encodeToBase64 } from "../utils"
+import { LoginContainer } from "./styles"
 
 function AdminLogin() {
   const [username, setUsername] = useState('')
@@ -28,7 +28,7 @@ function AdminLogin() {
     })
 
     if (response.ok) {
-      Cookies.set('admin-cookie', 'true', { expires: 7 })
+      Cookies.set('admin-cookie', 'true', {expires: 7})
       navigate('/admin/dashboard')
     } else {
       setError('Invalid credentials')

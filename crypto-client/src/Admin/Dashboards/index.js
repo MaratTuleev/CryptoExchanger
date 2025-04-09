@@ -1,5 +1,5 @@
-import TotalInfo from "./TotalInfo";
-import Transactions from "./Transactions";
+import TotalInfo from "./TotalInfo"
+import Transactions from "./Transactions"
 
 const Index = () => {
   return (

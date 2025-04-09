@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react";
-import { deepCamelCase } from "../../utils";
-import { Container, Table } from "react-bootstrap";
+import { useEffect, useState } from "react"
+import { deepCamelCase } from "../../utils"
+import { Container, Table } from "react-bootstrap"
+import { DashboardHeader, LogoutButton } from "./styles"
+import Cookies from "js-cookie"
+import { useNavigate } from "react-router-dom"
 
 const TotalInfo = () => {
+  const navigate = useNavigate()
   const [totalExchangeFee, setTotalExchangeFee] = useState()
   const [transactionsCount, setTransactionsCount] = useState()
   const [totalSuccessTransactions, setTotalSuccessTransactions] = useState()
@@ -23,9 +27,15 @@ const TotalInfo = () => {
     fetchTotalInfo()
   }, [])
 
+  const handleLogout = () => {
+    Cookies.remove('admin-cookie')
+    navigate('/admin/login')
+  }
+
   return (
     <Container className='mt-4'>
-      <h2 className='mb-4'>Total Info</h2>
+      <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
+      <DashboardHeader>Total Info</DashboardHeader>
       <Table striped bordered hover>
         <thead>
         <tr>

@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const FormContainer = styled.div`
-    margin: 16px;
+  margin: 16px;
 `
 
 export const FormError = styled.div`
