@@ -1,7 +1,5 @@
-import React from 'react'
 import ExchangeForm from "./ExchangeForm"
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Success from "./SuccessPage"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Login from "./Admin/Login"
 import Dashboards from "./Admin/Dashboards"
@@ -20,7 +18,6 @@ const App = () => {
             element={<PrivateRoute element={<Dashboards/>}/>}
           />
           <Route path="/exchange" element={<ExchangeForm/>}/>
-          <Route path="/success" element={<Success/>}/>
         </Routes>
       </BrowserRouter>
     </>

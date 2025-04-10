@@ -2986,3 +2986,90 @@ Completed 200 OK in 7ms (Views: 0.1ms | ActiveRecord: 1.2ms (3 queries, 0 cached
   [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='CryptoServer'*/[0m
   [1m[36mAdminUser Create (3.8ms)[0m  [1m[32mINSERT INTO "admin_users" ("username", "password_digest", "created_at", "updated_at") VALUES ('admin', '$2a$12$tZ.nozsG1Y4GhbEsTimCMeHIYodrxz3tLONA4R9t9FJ1lVBeessc6', '2025-04-09 16:58:38.035821', '2025-04-09 16:58:38.035821') RETURNING "id" /*application='CryptoServer'*/[0m
   [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT /*application='CryptoServer'*/[0m
+Started POST "/api/transactions" for ::1 at 2025-04-10 14:40:02 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (3.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='CryptoServer'*/[0m
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"12", "to_currency"=>"0.000136382598", "recipient_address"=>"1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", "exchange_rate"=>"0.000012232182", "exchange_fee"=>"0.000004403586", "transaction"=>{"email"=>"maratozavar@gmail.com", "recipient_address"=>"1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", "from_currency"=>"12", "to_currency"=>"0.000136382598", "exchange_rate"=>"0.000012232182", "exchange_fee"=>"0.000004403586"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTransaction Create (2.3ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "recipient_address", "transaction_id", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-10 11:40:03.098353', 'maratozavar@gmail.com', '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', NULL, 12.0, 0.0001363826, 0.0000122322, 0.0000044036, 'Success', '2025-04-10 11:40:03.098297', '2025-04-10 11:40:03.098297') RETURNING "id" /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+Completed 201 Created in 20ms (Views: 0.3ms | ActiveRecord: 36.6ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started POST "/api/transactions" for ::1 at 2025-04-10 14:42:34 +0300
+Processing by Api::TransactionsController#create as */*
+  Parameters: {"email"=>"maratozavar@gmail.com", "from_currency"=>"12", "to_currency"=>"0.000136324236", "recipient_address"=>"1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", "exchange_rate"=>"0.000012227168", "exchange_fee"=>"0.000004401780", "transaction"=>{"email"=>"maratozavar@gmail.com", "recipient_address"=>"1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", "from_currency"=>"12", "to_currency"=>"0.000136324236", "exchange_rate"=>"0.000012227168", "exchange_fee"=>"0.000004401780"}}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTransaction Create (1.5ms)[0m  [1m[32mINSERT INTO "transactions" ("date_time", "email", "recipient_address", "transaction_id", "from_currency", "to_currency", "exchange_rate", "exchange_fee", "status", "created_at", "updated_at") VALUES ('2025-04-10 11:42:34.956099', 'maratozavar@gmail.com', '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', NULL, 12.0, 0.0001363242, 0.0000122272, 0.0000044018, 'Success', '2025-04-10 11:42:34.956065', '2025-04-10 11:42:34.956065') RETURNING "id" /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT /*action='create',application='CryptoServer',controller='transactions'*/[0m
+  ↳ app/controllers/api/transactions_controller.rb:10:in `create'
+Completed 201 Created in 5ms (Views: 0.3ms | ActiveRecord: 2.3ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/admin/dashboards/total_info" for ::1 at 2025-04-10 14:47:12 +0300
+Started GET "/admin/dashboards/transactions?page=1" for ::1 at 2025-04-10 14:47:12 +0300
+Processing by Admin::DashboardsController#transactions as */*
+Processing by Admin::DashboardsController#total_info as */*
+  Parameters: {"page"=>"1"}
+  [1m[36mTransaction Sum (1.3ms)[0m  [1m[34mSELECT SUM("transactions"."exchange_fee") FROM "transactions" /*action='total_info',application='CryptoServer',controller='dashboards'*/[0m
+  ↳ app/controllers/admin/dashboards_controller.rb:5:in `total_info'
+  [1m[36mTransaction Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "transactions" /*action='total_info',application='CryptoServer',controller='dashboards'*/[0m
+  ↳ app/controllers/admin/dashboards_controller.rb:6:in `total_info'
+  [1m[36mTransaction Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "transactions" WHERE "transactions"."status" = 'Success' /*action='total_info',application='CryptoServer',controller='dashboards'*/[0m
+  ↳ app/controllers/admin/dashboards_controller.rb:7:in `total_info'
+Completed 200 OK in 12ms (Views: 0.1ms | ActiveRecord: 2.1ms (3 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/admin/dashboards/total_info" for ::1 at 2025-04-10 14:47:12 +0300
+Processing by Admin::DashboardsController#total_info as */*
+  [1m[36mTransaction Sum (0.2ms)[0m  [1m[34mSELECT SUM("transactions"."exchange_fee") FROM "transactions" /*action='total_info',application='CryptoServer',controller='dashboards'*/[0m
+  ↳ app/controllers/admin/dashboards_controller.rb:5:in `total_info'
+  [1m[36mTransaction Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "transactions" /*action='total_info',application='CryptoServer',controller='dashboards'*/[0m
+  ↳ app/controllers/admin/dashboards_controller.rb:6:in `total_info'
+  [1m[36mTransaction Count (15.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "transactions" /*action='transactions',application='CryptoServer',controller='dashboards'*/[0m
+  ↳ app/controllers/admin/dashboards_controller.rb:26:in `transactions'
+  [1m[36mTransaction Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "transactions" WHERE "transactions"."status" = 'Success' /*action='total_info',application='CryptoServer',controller='dashboards'*/[0m
+  ↳ app/controllers/admin/dashboards_controller.rb:7:in `total_info'
+  [1m[36mTransaction Load (0.7ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" LIMIT 10 OFFSET 0 /*action='transactions',application='CryptoServer',controller='dashboards'*/[0m
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.8ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+  ↳ app/controllers/admin/dashboards_controller.rb:24:in `transactions'
+Completed 200 OK in 26ms (Views: 2.2ms | ActiveRecord: 24.0ms (2 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/admin/dashboards/transactions?page=1" for ::1 at 2025-04-10 14:47:12 +0300
+Processing by Admin::DashboardsController#transactions as */*
+  Parameters: {"page"=>"1"}
+  [1m[36mTransaction Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "transactions" /*action='transactions',application='CryptoServer',controller='dashboards'*/[0m
+  ↳ app/controllers/admin/dashboards_controller.rb:26:in `transactions'
+  [1m[36mTransaction Load (0.6ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" LIMIT 10 OFFSET 0 /*action='transactions',application='CryptoServer',controller='dashboards'*/[0m
+  ↳ app/controllers/admin/dashboards_controller.rb:24:in `transactions'
+Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 1.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/admin/dashboards/transactions?page=2" for ::1 at 2025-04-10 14:47:15 +0300
+Processing by Admin::DashboardsController#transactions as */*
+  Parameters: {"page"=>"2"}
+  [1m[36mTransaction Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "transactions" /*action='transactions',application='CryptoServer',controller='dashboards'*/[0m
+  ↳ app/controllers/admin/dashboards_controller.rb:26:in `transactions'
+  [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" LIMIT 10 OFFSET 10 /*action='transactions',application='CryptoServer',controller='dashboards'*/[0m
+  ↳ app/controllers/admin/dashboards_controller.rb:24:in `transactions'
+Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 0.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/admin/dashboards/transactions?page=1" for ::1 at 2025-04-10 14:47:19 +0300
+Processing by Admin::DashboardsController#transactions as */*
+  Parameters: {"page"=>"1"}
+  [1m[36mTransaction Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "transactions" /*action='transactions',application='CryptoServer',controller='dashboards'*/[0m
+  ↳ app/controllers/admin/dashboards_controller.rb:26:in `transactions'
+  [1m[36mTransaction Load (0.6ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" LIMIT 10 OFFSET 0 /*action='transactions',application='CryptoServer',controller='dashboards'*/[0m
+  ↳ app/controllers/admin/dashboards_controller.rb:24:in `transactions'
+Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 1.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+

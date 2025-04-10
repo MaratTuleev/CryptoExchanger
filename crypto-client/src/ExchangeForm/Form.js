@@ -1,22 +1,8 @@
-import React, { useState } from 'react'
 import { FormContainer, FormError } from "./styles"
 import { Form, Button } from "react-bootstrap"
-import { deepCamelCase, deepSnakeCase } from "../utils"
-import { useNavigate } from 'react-router-dom'
 import { EXCHANGE_FEE_PERCENT, NETWORK_FEE, RATE_ACCURACY } from '../constants'
 
-const FormGroup = ({ exchangeRate }) => {
-  const [formData, setFormData] = useState({
-    usdtValue: '',
-    bitcoinValue: '',
-    exchangeFee: 0,
-    recipientWalletAddress: '',
-    recipientEmailAddress: '',
-    rulesChecked: false
-  })
-  const [errors, setErrors] = useState({})
-  const navigate = useNavigate()
-
+const FormGroup = ({ exchangeRate, formData, setFormData, onSubmit, errors }) => {
   const calcExchangeFee = (value) => (value * EXCHANGE_FEE_PERCENT).toFixed(RATE_ACCURACY)
 
   const handleChange = ({ target: { name, value, type, checked } }) => {
@@ -48,35 +34,6 @@ const FormGroup = ({ exchangeRate }) => {
     })
   }
 
-  const exchangeCurrency = async (event) => {
-    event.preventDefault()
-
-    const params = {
-      email: formData.recipientEmailAddress,
-      fromCurrency: formData.usdtValue,
-      toCurrency: formData.bitcoinValue,
-      recipientAddress: formData.recipientWalletAddress,
-      exchangeRate,
-      exchangeFee: formData.exchangeFee
-    }
-
-    fetch('http://localhost:3000/api/transactions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(deepSnakeCase(params)),
-    })
-      .then(response => {
-        if (response.status === 422) {
-          return response.json().then(errors => {
-            setErrors(deepCamelCase(errors))
-            throw new Error('Validation failed')
-          })
-        } else return response.json()
-      })
-      .then(data => navigate('/success', { state: params }))
-      .catch(error => console.warn(error.message))
-  }
-
   const {
     usdtValue,
     bitcoinValue,
@@ -88,7 +45,7 @@ const FormGroup = ({ exchangeRate }) => {
 
   return (
     <FormContainer>
-      <Form onSubmit={exchangeCurrency}>
+      <Form onSubmit={onSubmit}>
         <Form.Group className="mb-3" controlId="formUSDT">
           <Form.Label>You send (USDT)</Form.Label>
           <Form.Control

@@ -1,10 +1,9 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Header, InfoBlock, InfoContainer, PageHeader, SubHeader, SuccessContainer } from "./styles"
 import { Button } from "react-bootstrap"
+import { NETWORK_FEE } from '../constants'
 
-const Index = () => {
-  const NETWORK_FEE = 0.000006
-  const location = useLocation()
+const Index = ({params = {}, onGoBack}) => {
   const navigate = useNavigate()
 
   const {
@@ -13,13 +12,13 @@ const Index = () => {
     exchangeFee,
     recipientAddress,
     exchangeRate
-  } = location.state || {}
+  } = params
 
   return (
     <SuccessContainer>
       <PageHeader>
         Success
-        <Button onClick={() => navigate('/')}>Go back</Button>
+        <Button onClick={onGoBack}>Go back</Button>
       </PageHeader>
       <InfoContainer>
         <InfoBlock>
